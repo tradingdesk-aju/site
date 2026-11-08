@@ -213,7 +213,7 @@ async function abrir(K,kp,t,perfil){
   var html=dec.decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:buf.slice(0,12)},await aes(K,["decrypt"]),buf.slice(12)));
   var V=await vault();
   window.__pdf=async function(name){
-    var w=window.open("","_blank");
+    var w=window.open("","_blank");try{if(w)w.document.write("<title>Relatório</title><body style=\"font:16px sans-serif;padding:2rem;color:#0c1a30\">Abrindo o relatório, aguarde alguns segundos...</body>")}catch(_){}
     try{
       if(!kp)throw new Error("sem acesso");
       var f=V.pdf[name];var rr=await fetch("d/"+f);var b=new Uint8Array(await rr.arrayBuffer());
